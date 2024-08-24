@@ -1,6 +1,6 @@
 ---
 title: Stripe Fastapi Docker
-emoji: 🌍
+emoji: 🔌💷⚓
 colorFrom: purple
 colorTo: pink
 sdk: docker
