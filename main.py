@@ -26,7 +26,9 @@ def start():
 
 @app.post("/webhook")
 async def webhook_received(request: Request, stripe_signature: str = Header(None)):
-    webhook_secret = os.environ["STRIPE_WEBHOOK_SECRET"]
+    
+    #Local on Windows
+    #webhook_secret = os.environ["STRIPE_WEBHOOK_SECRET"]
 
     print("Entré al webhook...")
     
