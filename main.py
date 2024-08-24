@@ -10,7 +10,6 @@ stripe.api_key = os.environ["STRIPE_KEY"]
 # This is a terrible idea, only used for demo purposes!
 app.state.stripe_customer_id = None
 
-
 @app.get("/")
 def start(): 
 
@@ -50,7 +49,6 @@ async def webhook_received(request: Request, stripe_signature: str = Header(None
         print(f'unhandled event: {event_type}')
     
     return {"status": "success"}
-
 
 if __name__ == '__main__':
     uvicorn.run("main:app", reload=True)
