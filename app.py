@@ -9,17 +9,15 @@ import time
 
 app = FastAPI()
 
-templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
 stripe.api_key = os.environ["STRIPE_KEY"]
 # This is a terrible idea, only used for demo purposes!
 app.state.stripe_customer_id = None
 
 
 @app.get("/")
-def index(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "hasCustomer": app.state.stripe_customer_id is not None})
+def start(): 
+
+    return {"Status":"Deployed"}
 
 
 @app.get("/success")
