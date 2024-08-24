@@ -6,12 +6,17 @@ from fastapi import FastAPI, Request, Header
 
 app = FastAPI()
 
-stripe.api_key = os.environ["STRIPE_KEY"]
+#Local on Windows.
+#stripe.api_key = os.environ["STRIPE_KEY"]
+#API_KEY secret.
+stripe.api_key = os.getenv("STRIPE_KEY")
 # This is a terrible idea, only used for demo purposes!
 app.state.stripe_customer_id = None
 
 @app.get("/")
 def start(): 
+
+    HF_AUTH_TOKEN = os.getenv("HF_AUTH_TOKEN")
 
     return {"Status":"Deployed"}
 
