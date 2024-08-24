@@ -18,6 +18,8 @@ app.state.stripe_customer_id = None
 @app.get("/")
 def start(): 
 
+    print(string_key)
+
     return {f"Status":"Deployed {string_key}",}
 
 @app.post("/webhook")
@@ -25,8 +27,7 @@ async def webhook_received(request: Request, stripe_signature: str = Header(None
     webhook_secret = os.environ["STRIPE_WEBHOOK_SECRET"]
 
     print("Entré al webhook 182...")
-    time.sleep(1)
-
+    
     data = await request.body()
     try:
         event = stripe.Webhook.construct_event(
