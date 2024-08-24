@@ -10,6 +10,7 @@ app = FastAPI()
 #stripe.api_key = os.environ["STRIPE_KEY"]
 #API_KEY secret.
 stripe.api_key = os.getenv("STRIPE_KEY")
+webhook_secret = os.getenv("STRIPE_WEBHOOK_SECRET")
 
 string_key = stripe.api_key
 # This is a terrible idea, only used for demo purposes!
@@ -18,15 +19,16 @@ app.state.stripe_customer_id = None
 @app.get("/")
 def start(): 
 
-    print(string_key)
+    print(stripe.api_key)
+    print(webhook_secret)
 
-    return {f"Status":"Deployed {string_key}",}
+    return {f"Status":"Deployed"}
 
 @app.post("/webhook")
 async def webhook_received(request: Request, stripe_signature: str = Header(None)):
     webhook_secret = os.environ["STRIPE_WEBHOOK_SECRET"]
 
-    print("Entré al webhook 182...")
+    print("Entré al webhook...")
     
     data = await request.body()
     try:
