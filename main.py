@@ -36,6 +36,13 @@ async def webhook_received(request: Request, stripe_signature: str = Header(None
     #webhook_secret = os.environ["STRIPE_WEBHOOK_SECRET"]
 
     print("Entré al webhook...")
+    print("Éste es el request: ")
+    print(request)
+    time.sleep(1)
+
+    print("Ésta es la stripe signature:")
+    print(stripe_signature)
+    time.sleep(2)
     
     data = await request.body()
     
