@@ -3,6 +3,7 @@ import time
 import stripe
 import uvicorn
 from fastapi import FastAPI, Request, Header
+import sulkuPypi
 
 app = FastAPI()
 
@@ -21,6 +22,10 @@ def start():
 
     print(stripe.api_key)
     print(webhook_secret)
+
+    autorizacion = sulkuPypi.authorize(19, 'picswap')
+
+    print("Autorización: ", autorizacion)
 
     return {f"Status":"Deployed"}
 
