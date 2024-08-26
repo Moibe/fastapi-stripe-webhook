@@ -39,16 +39,15 @@ async def webhook_received(request: Request, stripe_signature: str = Header(None
     
     data = await request.body()
     
-    try:
-        print("Entré al try...")
-        event = stripe.Webhook.construct_event(
-            payload=data,
-            sig_header=stripe_signature,
-            secret=webhook_secret
-        )
-        event_data = event['data']
-    except Exception as e:
-        return {"error": str(e)}
+    
+    print("Entré al try...")
+    event = stripe.Webhook.construct_event(
+        payload=data,
+        sig_header=stripe_signature,
+        secret=webhook_secret
+    )
+    event_data = event['data']
+
 
     event_type = event['type']
     print("Voy a imprimir el event type:")
@@ -64,7 +63,14 @@ async def webhook_received(request: Request, stripe_signature: str = Header(None
     else:
         print(f'unhandled event: {event_type}')
     
+    
+    
     return {"status": "success"}
+
+   
+
+
+
 
 if __name__ == '__main__':
     uvicorn.run("main:app", reload=True)
