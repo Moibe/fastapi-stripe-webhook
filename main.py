@@ -38,7 +38,9 @@ async def webhook_received(request: Request, stripe_signature: str = Header(None
     print("Entré al webhook...")
     
     data = await request.body()
+    
     try:
+        print("Entré al try...")
         event = stripe.Webhook.construct_event(
             payload=data,
             sig_header=stripe_signature,
@@ -49,7 +51,6 @@ async def webhook_received(request: Request, stripe_signature: str = Header(None
         return {"error": str(e)}
 
     event_type = event['type']
-
     print("Voy a imprimir el event type:")
     print(event_type)
     time.sleep(1)
