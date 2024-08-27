@@ -43,25 +43,22 @@ async def webhook_received(request: Request, stripe_signature: str = Header(None
         secret=webhook_secret
     )
     event_data = event['data']
-    print("Ésto es el event data: ")
-    print(event_data)
-    time.sleep(3)
-
+    # print("Ésto es el event data: ")
+    # print(event_data)
+    
 
     event_type = event['type']
     print("Voy a imprimir el event type:")
     print(event_type)
-    time.sleep(1)
+    time.sleep(2)
 
-    if event_type == 'checkout.session.completed':
-        print('checkout session completed')
-    elif event_type == 'invoice.paid':
-        print('invoice paid')
-    elif event_type == 'invoice.payment_failed':
-        print('invoice payment failed')
+    if event_type == 'charge.succeed':
+        print('charge succeed')
+        autorizacion = sulkuPypi.authorize(19, 'picswap')
+        print("Autorización: ", autorizacion)
+        
     else:
-        print(f'unhandled event: {event_type}')
-    
+        print(f'unhandled event: {event_type}')    
     
     
     return {"status": "success"}
