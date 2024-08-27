@@ -36,6 +36,9 @@ async def webhook_received(request: Request, stripe_signature: str = Header(None
     #webhook_secret = os.environ["STRIPE_WEBHOOK_SECRET"]
     
     data = await request.body()
+    print("Estoy imprimiendo la data del request: ")
+    print(data)
+    print("TERMINÉ")
     
     event = stripe.Webhook.construct_event(
         payload=data,
@@ -56,7 +59,7 @@ async def webhook_received(request: Request, stripe_signature: str = Header(None
         print('charge succeed')
         autorizacion = sulkuPypi.authorize(19, 'picswap')
         print("Autorización: ", autorizacion)
-        
+
     else:
         print(f'unhandled event: {event_type}')    
     
