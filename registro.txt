@@ -1,0 +1,7 @@
+2025-05-25 10:48:06,charge.succeeded
+2025-05-25 10:50:49,charge.succeeded
+2025-05-25 13:33:46,charge.succeeded
+2025-05-25 14:29:47,charge.succeeded
+2025-05-25 14:47:05,charge.succeeded
+2025-06-08 20:52:35,charge.succeeded
+2025-07-23 20:01:58,charge.succeeded
